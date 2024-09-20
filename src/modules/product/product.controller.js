@@ -7,8 +7,7 @@ import cloudinary from "../../utils/cloud.js";
 import { ApiFeature } from "../../utils/apiFeatures.js";
 import { deleteFile } from "../../utils/file-functions.js";
 import { deleteCloudImage } from "../../utils/cloud.js";
-
-
+import { Category } from "../../../db/index.js";
 // Add Product
 export const addProduct = async (req, res, next) => {
   try {
@@ -258,3 +257,30 @@ export const updateProduct = async (req, res, next) => {
       data: productUpdated
   })
 }
+
+
+// Get Specific Product
+export const getProduct = async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+
+    // Check if the product exists
+    const product = await Product.findById(productId)
+      .populate('category')
+      .populate('subcategory')
+      .populate('brand');
+
+    if (!product) {
+      return next(new AppError(messages.product.notFound, 404));
+    }
+
+    // Send the product data
+    return res.status(200).json({
+      message: messages.product.createSuccessfully,
+      success: true,
+      data: product,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

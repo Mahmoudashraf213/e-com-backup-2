@@ -3,7 +3,7 @@ import { cloudUploads } from "../../utils/multer-cloud.js";
 import { isValid } from "../../middleware/vaildation.js";
 import { addProductVal, updateProductVal } from "./product.validation.js";
 import { asyncHandler } from "../../utils/appError.js";
-import { addProduct, getAllProducts, updateProduct } from "./product.controller.js";
+import { addProduct, getAllProducts, getProduct, updateProduct } from "./product.controller.js";
 
 const productRouter = Router();
 // add product todo authentication authorization
@@ -30,5 +30,9 @@ productRouter.put(
 
   // get product
 productRouter.get('/', asyncHandler(getAllProducts))
+
+// get specfic products  
+productRouter.get('/:productId', asyncHandler(getProduct));
+
 
 export default productRouter;

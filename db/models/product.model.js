@@ -51,7 +51,7 @@ const productSchema = new Schema(
   // ids
   category: {type: Schema.Types.ObjectId, ref:"Category",required:true},
   subcategory: {type: Schema.Types.ObjectId, ref:"Subcategory",required:true},
-  brand: {type: Schema.Types.ObjectId, ref:"brand",required:true},
+  brand: {type: Schema.Types.ObjectId, ref:"Brand",required:true},
   createdBy: {type: Schema.Types.ObjectId, ref:"User",required:false}, // todo true
   updatedBy: {type: Schema.Types.ObjectId, ref:"User",required:false}, // todo true
   rate:{

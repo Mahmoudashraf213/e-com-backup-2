@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+
 import { roles } from "../../src/utils/constant/enums.js";
 
 //schema
@@ -62,4 +63,4 @@ const userSchema = new Schema(
 );
 
 //model
-export const User = model("USer",userSchema)
+export const User = model("User",userSchema)

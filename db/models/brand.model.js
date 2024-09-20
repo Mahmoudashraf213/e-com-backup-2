@@ -1,40 +1,39 @@
-import { model, Schema } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 
 // schema
-const brandSchema = new Schema(
+const brandSchema = new mongoose.Schema(
   {
     name: {
-      type: String,
-      require: true,
-      uniqued: true,
-      lowercase: true,
-      trim: true,
-    },
-    slug:{
       type: String,
       required: true,
       unique: true,
       lowercase: true,
       trim: true,
     },
-    logo:{
-      secure_url:{
-            type: String,
-            required:true,
-      },
-      public_id:{
-            type: String,
-            required: true,
-      }
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
     },
-    creatBy:{
-      type:Schema.Types.ObjectId,
-      ref:'User',
+    logo: {
+      secure_url: {
+        type: String,
+        required: true,
+      },
+      public_id: {
+        type: String,
+        required: true,
+      },
+    },
+    creatBy: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: false, // todo true
-    }
+    },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 );
 // model
-export const Brand = model('Brand',brandSchema)
-
+export const Brand = model("Brand", brandSchema);
