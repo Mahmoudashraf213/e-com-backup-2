@@ -14,8 +14,9 @@ const parseArray = (value, helper) => {
 };
 export const generalFields = {
   name: joi.string(),
+  slug: joi.string(),
   description: joi.string().max(2000),
-  objectId: joi.string(),
+  objectId: joi.string().hex().length(24),
   stock: joi.number().positive(),
   price: joi.number().positive(),
   discount: joi.number(),

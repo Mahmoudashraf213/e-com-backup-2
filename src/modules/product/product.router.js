@@ -17,12 +17,16 @@ productRouter.post(
   asyncHandler(addProduct)
 )
 
-// update product  todo authentcation & autherizaton
-productRouter.put('/:productId',
-  cloudUploads().fields([{ name: 'mainImage', maxCount: 1 }, { name: 'subImages', maxCount: 10 }]),
-  isValid(updateProductVal),
-  asyncHandler(updateProduct)
-)
+// Update route to include validation
+productRouter.put(
+  '/:productId',
+  cloudUploads({}).fields([
+    { name: 'mainImage', maxCount: 1 },
+    { name: 'subImages', maxCount: 5 }
+  ]),
+  isValid(updateProductVal), // Middleware for validation
+  asyncHandler(updateProduct) // Your updateProduct function
+);
 
   // get product
 productRouter.get('/', asyncHandler(getAllProducts))

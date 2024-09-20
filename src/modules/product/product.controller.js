@@ -1,4 +1,5 @@
 import slugify from "slugify";
+import mongoose from 'mongoose';
 import { Brand, Product, Subcategory } from "../../../db/index.js";
 import { AppError } from "../../utils/appError.js";
 import { messages } from "../../utils/constant/messages.js";
@@ -167,24 +168,29 @@ export const updateProduct = async (req, res, next) => {
       category,
       subcategory,
   } = req.body;
+  // console.log(req.body); // Log the request body to verify its contents
+  
   const { productId } = req.params
   // check existance 
   const productExist = await Product.findById(productId)
   if (!productExist) {
-      return next(new APPError(messages.product.notExist, 404))
+      return next(new AppError(messages.product.notExist, 404))
   }
   // 1- brand 
   if (brand) {
+    // const brandId = mongoose.Types.ObjectId(req.params.brandId);
+    // const brandExists = await Brand.findById(brandId);
+    // const brandExists = await Brand.findById(mongoose.Types.ObjectId(brandId));
       const brandExist = await Brand.findById(brand)
       if (!brandExist) {
-          return next(new APPError(messages.brand.notExist, 404))
+          return next(new AppError(messages.brand.notExist, 404))
       }
   }
   // 2- subcategory 
   if (subcategory) {
       const subcategoryExist = await Subcategory.findById(subcategory)
       if (!subcategoryExist) {
-          return next(new APPError(messages.subcategory.notExist, 404))
+          return next(new AppError(messages.subcategory.notExist, 404))
       }
   }
   // check name exist if business want 
@@ -243,7 +249,7 @@ export const updateProduct = async (req, res, next) => {
   const productUpdated = await productExist.save()
   // handel fail
   if (!productUpdated) {
-      return next(new APPError(messages.product.failToUpdate, 500))
+      return next(new AppError(messages.product.failToUpdate, 500))
   }
   // send res
   res.status(200).json({

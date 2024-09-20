@@ -9,7 +9,9 @@ export const addSubcategoryVal = joi.object({
 
 export const updateSubcategoryVal = joi.object({
   name: generalFields.name,
+  // slug: generalFields.slug,
   subcategoryId: generalFields.objectId.required(),
+  category: generalFields.objectId,
 });
 
 export const deleteSubCategoryVal = joi.object({
