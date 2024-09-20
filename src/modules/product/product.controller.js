@@ -284,3 +284,36 @@ export const getProduct = async (req, res, next) => {
     next(error);
   }
 };
+
+
+export const deleteProduct = async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+
+    // Find the product by ID
+    const product = await Product.findById(productId);
+    if (!product) {
+      return next(new AppError(messages.product.notFound, 404));
+    }
+
+    // Optionally delete images associated with the product (if applicable)
+    if (product.image && product.image.public_id) {
+      await deleteCloudImage(product.image.public_id); // Assuming you have a function for Cloudinary deletion
+    }
+
+    // Delete the product from the database
+    const deletedProduct = await Product.findByIdAndDelete(productId);
+    if (!deletedProduct) {
+      return next(new AppError(messages.product.failToDelete, 500));
+    }
+
+    // Send response
+    return res.status(200).json({
+      message: messages.product.deleteSuccessfully,
+      success: true,
+      data: deletedProduct,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

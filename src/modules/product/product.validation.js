@@ -36,5 +36,8 @@ productId:generalFields.objectId.required(),
 category:generalFields.objectId,
 subcategory:generalFields.objectId,
 brand:generalFields.objectId.trim(),
-
 })
+
+export const deleteProductVal = joi.object({
+    productId: generalFields.objectId.required(),
+});
