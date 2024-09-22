@@ -45,6 +45,7 @@ export const addSubcategory = async (req, res, next) => {
     slug,
     category,
     image: { secure_url, public_id },
+    createdBy: req.authUser._id 
   });
 
   // Save to database
@@ -94,6 +95,8 @@ export const updateSubcategory = async (req, res, next) => {
       }
       subcategoryExist.name = name.toLowerCase();
       subcategoryExist.slug = slugify(name);
+      subcategoryExist.updatedBy = req.authUser._id
+
     }
 
     // Handle image update

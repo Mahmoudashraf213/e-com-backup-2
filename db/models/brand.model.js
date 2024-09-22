@@ -27,10 +27,15 @@ const brandSchema = new mongoose.Schema(
         required: true,
       },
     },
-    creatBy: {
+    createdBy: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      required: false, // todo true
+      required: true,
+    },
+    updatedBy: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      // required: true
     },
   },
   { timestamps: true, versionKey: false }

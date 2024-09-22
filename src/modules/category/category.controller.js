@@ -32,6 +32,7 @@ export const addCategory = async (req, res, next) => {
     name,
     slug,
     image: { secure_url, public_id },
+    createdBy: req.authUser._id
   });
 
   // add to database
@@ -75,7 +76,9 @@ export const updateCategory = async (req, res, next) => {
     const slug = slugify(name);
     categoryExist.name = name;
     categoryExist.slug = slug;
+    categoryExist.updatedBy = req.authUser._id
   }
+  
 
   // upload and update image if file is provided
   if (req.file) {

@@ -28,7 +28,7 @@ export const addBrand = async (req, res, next) => {
     name,
     slug,
     logo: { secure_url, public_id },
-    //  createBy : todo token
+    createdBy: req.authUser._id 
   });
   // add to db
   const createBrand = await brand.save();
@@ -66,6 +66,7 @@ export const updateBrand = async (req, res, next) => {
     const slug = slugify(name);
     barndExist.name = name
     barndExist.slug = slug
+    barndExist.updatedBy = req.authUser._id
   }
   // upload image
   if (req.file) {

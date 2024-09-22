@@ -9,7 +9,7 @@ import { isAuthorized } from '../../middleware/autheraization.js';
 import { roles } from '../../utils/constant/enums.js';
 const categoryRouter = Router()
 
-// add category todo authentication & auth
+// add category 
 categoryRouter.post('/',
   isAuthenticated(),
   isAuthorized([roles.ADMIN , roles.SELLER]),
@@ -18,8 +18,10 @@ categoryRouter.post('/',
   asyncHandler(addCategory)
 
 )
-// update category todo authentication autherazation 
+// update category 
 categoryRouter.put('/:categoryId',
+  isAuthenticated(),
+  isAuthorized([roles.ADMIN ]),
   cloudUploads({}).single('image'),
   isValid(updateCategoryVal),
   asyncHandler(updateCategory)

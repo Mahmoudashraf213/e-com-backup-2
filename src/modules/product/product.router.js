@@ -4,11 +4,16 @@ import { isValid } from "../../middleware/vaildation.js";
 import { addProductVal, deleteProductVal, updateProductVal } from "./product.validation.js";
 import { asyncHandler } from "../../utils/appError.js";
 import { addProduct, deleteProduct, getAllProducts, getProduct, updateProduct } from "./product.controller.js";
+import { isAuthenticated } from "../../middleware/authentication.js";
+import { isAuthorized } from "../../middleware/autheraization.js";
+import { roles } from "../../utils/constant/enums.js";
 
 const productRouter = Router();
-// add product todo authentication authorization
+// add product
 productRouter.post(
   "/",
+  isAuthenticated(),
+  isAuthorized([roles.ADMIN , roles.SELLER]),
   cloudUploads({}).fields([
     { name: "mainImage", maxCount: 1 },
     { name: "subImages", maxCount: 5 },
@@ -20,6 +25,8 @@ productRouter.post(
 // Update route to include validation
 productRouter.put(
   '/:productId',
+  isAuthenticated(),
+  isAuthorized([roles.ADMIN]),
   cloudUploads({}).fields([
     { name: 'mainImage', maxCount: 1 },
     { name: 'subImages', maxCount: 5 }

@@ -87,7 +87,7 @@ export const addProduct = async (req, res, next) => {
       brand,
       mainImage,
       subImages,
-      // TODO: createBy, updatedBy tokens
+      createdBy: req.authUser._id 
     });
 
     // Add to db
@@ -250,6 +250,8 @@ export const updateProduct = async (req, res, next) => {
   if (!productUpdated) {
       return next(new AppError(messages.product.failToUpdate, 500))
   }
+      // Add the updatedBy field
+      productExist.updatedBy = req.authUser._id;
   // send res
   res.status(200).json({
       message: messages.product.updated,

@@ -24,8 +24,13 @@ const categorySchema = new Schema(
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      required: false, //todo true
+      required: true,
     },
+    updatedBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      // required: true
+  }
   },
   { timestamps: true }
 );
