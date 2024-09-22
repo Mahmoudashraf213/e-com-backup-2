@@ -49,7 +49,7 @@ export const verifyAccount = async (req, res, next) => {
   // get data from req
   const { token } = req.params;
   // check token
-  const payload = verifyToken(token)
+  const payload = verifyToken({token})
   await User.findOneAndUpdate({ email: payload.email, status: status.PENDING }, { status: status.VERIFIED })
   // send res
   return res.status(200).json({ message: messages.user.verified, success: true })
@@ -60,14 +60,14 @@ export const login = async (req, res, next) => {
   // get data from req
   const { email, phone, password } = req.body
   // check if user exist
-  const userExist = await User.findOne({ $or: [{ email }, { phone }] })
+  const userExist = await User.findOne({ $or: [{ email }, { phone }], status: status.VERIFIED })
   if (!userExist) {
       return next(new AppError(messages.user.invalidCredntiols, 400))
   }
   // check password
   const isMatch = bcrypt.compareSync(password, userExist.password)
   if (!isMatch) {
-      return next(new AppErroror(messages.user.invalidCredntiols, 401))
+      return next(new AppError(messages.user.invalidCredntiols, 401))
   }
   // check if user is verified
   if (userExist.status !== status.VERIFIED) {

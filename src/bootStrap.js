@@ -7,7 +7,7 @@ export const bootStrap = (app,express) => {
   // public foilder
   app.use('/uploads',express.static('uploads'))
   // routing
-  app.use('/catehory',categoryRouter)
+  app.use('/category',categoryRouter)
   app.use('/subcategory',subcategoryRouter)
   app.use('/brand',brandRouter)
   app.use('/product',productRouter)
