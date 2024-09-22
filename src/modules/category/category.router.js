@@ -34,7 +34,10 @@ categoryRouter.get('/',asyncHandler(getCategories))
 categoryRouter.get('/:categoryId', asyncHandler(getCategory));
 
 // Route to delete a category and its image
-categoryRouter.delete('/:categoryId', asyncHandler(deleteCategory));
+categoryRouter.delete('/:categoryId',
+  isAuthenticated(),
+  isAuthorized([roles.ADMIN]),
+  asyncHandler(deleteCategory));
 
 export default categoryRouter;
 

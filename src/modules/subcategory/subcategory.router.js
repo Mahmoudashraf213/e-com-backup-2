@@ -37,4 +37,9 @@ subcategoryRouter.get('/specific/:subcategoryId', asyncHandler(subcategoryById))
 export default subcategoryRouter;
 
 // delete subcategory 
-subcategoryRouter.delete('/:subcategoryId', isValid(deleteSubCategoryVal), asyncHandler(deleteSubcategory))
+subcategoryRouter.delete('/:subcategoryId',
+  isAuthenticated(),
+  isAuthorized([roles.ADMIN]), 
+  isValid(deleteSubCategoryVal),
+  asyncHandler(deleteSubcategory)
+)

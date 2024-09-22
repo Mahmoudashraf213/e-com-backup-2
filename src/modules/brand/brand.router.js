@@ -34,5 +34,9 @@ brandRouter.get('/', asyncHandler(getAllBrand))
 brandRouter.get('/specific/:brandId', asyncHandler(getSpecificBrand));
 
 // Route to delete a brand by ID
-brandRouter.delete('/:brandId', isValid(deleteBrandVal), asyncHandler(deleteBrand));
+brandRouter.delete('/:brandId',
+  isAuthenticated(),
+  isAuthorized([roles.ADMIN]),
+  isValid(deleteBrandVal),
+  asyncHandler(deleteBrand));
 export default brandRouter

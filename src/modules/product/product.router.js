@@ -44,6 +44,8 @@ productRouter.get('/:productId', asyncHandler(getProduct));
 // Delete a product by its ID
 productRouter.delete(
   '/:productId',
+  isAuthenticated(),
+  isAuthorized([roles.ADMIN]),
   isValid(deleteProductVal), // Apply validation
   asyncHandler(deleteProduct) // Call the deleteProduct controller
 );
