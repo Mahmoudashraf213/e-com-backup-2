@@ -30,6 +30,7 @@ export const generalFields = {
   cpassword: joi.string().valid(joi.ref("password")),
   status: joi.string().valid("pending", "verified", "blocked"),
   DOB: joi.string(),
+  comment: joi.string().max(2000),
 };
 
 // Define a schema using generalFields or another schema you need

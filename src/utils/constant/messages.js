@@ -14,6 +14,7 @@ export const messages = {
   brand: generateMessage("brand"),
   product:generateMessage("product"),
   user:generateMessage("user"),
+  review:generateMessage("review"),
   file:{required:'file is required '},
   user: {
     ...generateMessage('user'),
