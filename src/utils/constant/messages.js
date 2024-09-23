@@ -1,6 +1,6 @@
 
 const generateMessage = (entity) => ({
-  alreadyExist: `${entity} already entity exist`,
+  alreadyExist: `${entity} already exist`,
   notFound: `${entity} not found`,
   failToCreate: `fail to create ${entity} `,
   failToUpdate: `fail to update ${entity} `,
@@ -15,6 +15,7 @@ export const messages = {
   product:generateMessage("product"),
   user:generateMessage("user"),
   review:generateMessage("review"),
+  coupon:generateMessage("coupon"),
   file:{required:'file is required '},
   user: {
     ...generateMessage('user'),
