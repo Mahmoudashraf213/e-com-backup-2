@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { User } from "../../../db/index.js";
+import { Cart, User } from "../../../db/index.js";
 import { AppError } from "../../utils/appError.js";
 import { messages } from "../../utils/constant/messages.js";
 import { sendEmail } from "../../utils/email.js";
@@ -29,7 +29,7 @@ export const signup = async (req, res, next) => {
     return next(new AppError(messages.user.failToCreate));
   }
   // genreate token 
-  const token = generateToken({ payload: { email } })
+  const token = generateToken({ payload: { email , _id:createdUser._id} })
   // send email
   await sendEmail({
     to:email,
@@ -51,6 +51,7 @@ export const verifyAccount = async (req, res, next) => {
   // check token
   const payload = verifyToken({token})
   await User.findOneAndUpdate({ email: payload.email, status: status.PENDING }, { status: status.VERIFIED })
+  await Cart.create({user:payload._id, prdoucts:[]})
   // send res
   return res.status(200).json({ message: messages.user.verified, success: true })
 }

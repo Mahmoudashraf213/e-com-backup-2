@@ -64,4 +64,7 @@ const productSchema = new Schema(
   { timestamps: true }
 );
 // model
+productSchema.methods.inStock = function(quantity){
+  return this.stock < quantity ? false : true;
+}
 export const Product = model('product', productSchema)

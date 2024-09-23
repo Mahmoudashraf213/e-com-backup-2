@@ -5,3 +5,4 @@ export * from './models/subcategory.model.js';
 export * from './models/user.model.js';
 export * from './models/review.model.js';
 export * from './models/cuopon.model.js';
+export * from './models/cart.model.js';
