@@ -5,5 +5,6 @@ import couponRouter from "./coupon/coupon.router.js";
 import productRouter from "./product/product.router.js";
 import reviewRouter from "./review/review.router.js";
 import subcategoryRouter from "./subcategory/subcategory.router.js";
-export { authRouter, brandRouter, categoryRouter, couponRouter, productRouter, reviewRouter, subcategoryRouter };
+import wishlistRouter from "./wishlist/wishlist.router.js";
+export { authRouter, brandRouter, categoryRouter, couponRouter, productRouter, reviewRouter, subcategoryRouter, wishlistRouter };
 

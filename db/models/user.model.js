@@ -32,16 +32,17 @@ const userSchema = new Schema(
       enum: Object.values(roles),
       default: roles.USER,
     },
-    status:{
+    status: {
       type: String,
-      enum:["pending", "verified", "blocked" ],
-      default: "pending"
+      enum: ["pending", "verified", "blocked"],
+      default: "pending",
     },
     image: {
       secure_url: { type: String, required: false },
       public_id: { type: String, required: false },
     },
     DOB: { type: String, default: Date.now() },
+    wishList: [{ type: Schema.Types.ObjectId, ref: "product" }],
     // isBlocked: {
     //   type: Boolean,
     //   default: false,
@@ -63,4 +64,4 @@ const userSchema = new Schema(
 );
 
 //model
-export const User = model("User",userSchema)
+export const User = model("User", userSchema);
