@@ -1,4 +1,6 @@
 import { User } from "../../../db/index.js";
+import { messages } from "../../utils/constant/messages.js";
+
 
 export const addToWishList = async (req, res, next) => {
   // get data from req
@@ -10,7 +12,7 @@ export const addToWishList = async (req, res, next) => {
     {new : true}
   );
   return res.status(200).json({
-      message: "wishlist updated successfully",
+      message: messages.,
       success: true,
       data: userUpdated.wishList,
     });
