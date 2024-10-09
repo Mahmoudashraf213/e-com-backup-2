@@ -8,3 +8,12 @@ export const addCouponVal = joi.object({
   fromDate:joi.date().greater(Date.now()-24*60*60*1000).required(),
   toDate: joi.date().greater(joi.ref('fromDate')).required()
 })
+
+export const updateCouponVal = joi.object({
+  couponId: generalFields.objectId.required(),
+  code: joi.string().max(6),
+  discountAmount: joi.number().positive(),
+  discountType: generalFields.discountType,
+  fromDate: joi.date().greater(Date.now() - 24 * 60 * 60 * 1000),
+  toDate: joi.date().greater(joi.ref("fromDate"))
+});

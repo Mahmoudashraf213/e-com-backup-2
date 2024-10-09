@@ -3,9 +3,9 @@ import { isAuthenticated } from "../../middleware/authentication.js";
 import { isAuthorized } from "../../middleware/autheraization.js";
 import { isValid } from "../../middleware/vaildation.js";
 import { roles } from "../../utils/constant/enums.js";
-import { addCouponVal } from "./coupon.vaildation.js";
+import { addCouponVal, updateCouponVal } from "./coupon.vaildation.js";
 import { asyncHandler } from "../../utils/appError.js";
-import { addCoupon } from "./coupon.controller.js";
+import { addCoupon, deleteCoupon, getAllCoupons, getCoupon, updateCoupon } from "./coupon.controller.js";
 
 const couponRouter = Router()
 
@@ -16,5 +16,38 @@ couponRouter.post('/',
   isValid(addCouponVal),
   asyncHandler(addCoupon)
 )
+
+// Update coupon
+couponRouter.put(
+  "/:couponId",
+  isAuthenticated(),
+  isAuthorized([roles.ADMIN]),
+  isValid(updateCouponVal),
+  asyncHandler(updateCoupon)
+);
+
+// Get all coupons
+couponRouter.get(
+  '/',
+  isAuthenticated(),
+  isAuthorized([roles.ADMIN]),
+  asyncHandler(getAllCoupons)
+);
+
+// Get specific coupon by ID
+couponRouter.get(
+  '/get-specific/:couponId',
+  isAuthenticated(),
+  isAuthorized([roles.ADMIN]),
+  asyncHandler(getCoupon)
+);
+
+// Delete coupon by ID
+couponRouter.delete(
+  '/:couponId',
+  isAuthenticated(),
+  isAuthorized([roles.ADMIN]), // Only ADMIN can delete a coupon
+  asyncHandler(deleteCoupon)
+);
 
 export default couponRouter

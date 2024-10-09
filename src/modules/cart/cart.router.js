@@ -4,12 +4,15 @@ import { isAuthorized } from "../../middleware/autheraization.js";
 import { roles } from "../../utils/constant/enums.js";
 import { asyncHandler } from "../../utils/appError.js";
 import { addToCart } from "./cart.controller.js";
+import { isValid } from "../../middleware/vaildation.js";
+import { addToCartVal } from "./cart.validation.js";
 const cartRouter = Router()
 
 // add cart
 cartRouter.put('/',
   isAuthenticated(),
-  isAuthorized([roles.USER]),
+  isAuthorized([roles.USER, roles.ADMIN]),
+  isValid(addToCartVal),
   asyncHandler(addToCart)
   
 )

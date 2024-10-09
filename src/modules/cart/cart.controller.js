@@ -5,6 +5,7 @@ import { messages } from "../../utils/constant/messages.js";
 export const addToCart = async (req, res, next) => {
   // get data from req
   const { productId, quantity } = req.body;
+  const user = req.authUser._id;
   // check product
   const prdouctExist = await Product.findById( productId );
   if (!prdouctExist) {
@@ -15,18 +16,18 @@ export const addToCart = async (req, res, next) => {
   }
   let data= ''; 
   const ProductExistInCart = await Cart.findOneAndUpdate(
-    { user: req.authUser._id ,"products.productId": productId},
+    { user,"products.productId": productId},
     {"products.$.quantity": quantity},
     {new: true}
   );
   data = ProductExistInCart
   if (!ProductExistInCart) {
-  const addedProduct =  await Cart.findOneAndUpdate({ user: req.authUser._id},{
+  const addedProduct =  await Cart.findOneAndUpdate({ user },{
       $push:{ products: { productId, quantity}}
     },{new:true})
     data = addedProduct
   }
   // send response
   return res.status(200).json({message:"add to cart successfully",success:true,data})
-
 };
+
