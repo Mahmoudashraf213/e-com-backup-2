@@ -56,7 +56,7 @@ for (const product of products) {
   const quantity = product.quantity;
 
   // Log the values for debugging
-  console.log(`Product ID: ${product.productId}, Price: ${productFinalPrice}, Quantity: ${quantity}`);
+  // console.log(`Product ID: ${product.productId}, Price: ${productFinalPrice}, Quantity: ${quantity}`);
 
   const finalPrice = quantity * productFinalPrice;
 
