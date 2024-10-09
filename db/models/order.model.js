@@ -9,7 +9,7 @@ const orderSchema = new Schema(
       {
         productId: {
           type: Schema.Types.ObjectId,
-          ref: "Product",
+          ref: "product",
           required: true,
         },
         name: String,
@@ -31,9 +31,15 @@ const orderSchema = new Schema(
       default: orderStatus.PLACED,
     },
     payment: {
-      type: String,
-      enum: ["cash", "visa"],
-      required: true,
+      method: {
+        type: String,
+        enum: ["cash", "visa"],
+        required: true,
+      },
+      amount: {
+        type: Number,
+        required: true,
+      },
     },
     orderPrice: Number,
     finalPrice: Number,
