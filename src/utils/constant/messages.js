@@ -8,7 +8,8 @@ const generateMessage = (entity) => ({
   updateSuccessfully: `update ${entity} Successfully`,
   deleteSuccessfully: `delete ${entity} Successfully`,
   getAllSuccessfully: `get all ${entity} Successfully`,
-  getSuccessfully:`get ${entity} Successfully`
+  getSuccessfully:`get ${entity} Successfully`,
+  notExist:`not exist ${entity}`,
 });
 export const messages = {
   category: generateMessage("category"),
