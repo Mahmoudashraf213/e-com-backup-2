@@ -16,6 +16,7 @@ export const messages = {
   user:generateMessage("user"),
   review:generateMessage("review"),
   coupon:generateMessage("coupon"),
+  order:generateMessage("order"),
   file:{required:'file is required '},
   user: {
     ...generateMessage('user'),

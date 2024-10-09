@@ -1,3 +1,4 @@
+// auth.controller.js
 import bcrypt from "bcrypt";
 import { Cart, User } from "../../../db/index.js";
 import { AppError } from "../../utils/appError.js";
@@ -56,7 +57,7 @@ export const verifyAccount = async (req, res, next) => {
   return res.status(200).json({ message: messages.user.verified, success: true })
 }
 
-// lohin account
+// login account
 export const login = async (req, res, next) => {
   // get data from req
   const { email, phone, password } = req.body
