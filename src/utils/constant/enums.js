@@ -27,3 +27,14 @@ export const orderStatus = {
   CANCELLED : "cancelled",
   REFUNEDED: "refunded",
 }
+Object.freeze(orderStatus)
+
+
+export const paymentType = {
+  CASH: "cash",
+  CREDIT: "credit",
+  DEBIT: "debit",
+};
+
+Object.freeze(paymentType)
+
