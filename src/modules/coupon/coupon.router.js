@@ -46,7 +46,7 @@ couponRouter.get(
 couponRouter.delete(
   '/:couponId',
   isAuthenticated(),
-  isAuthorized([roles.ADMIN]), // Only ADMIN can delete a coupon
+  isAuthorized([roles.ADMIN]), 
   asyncHandler(deleteCoupon)
 );
 
