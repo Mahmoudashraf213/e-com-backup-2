@@ -5,7 +5,7 @@ export const sendEmail = async ({ to, subject, html }) => {
     service: "gmail", // Correct the typo here
     auth: {
       user: "mhmwdbhjt307@gmail.com",
-      pass: "vanmixnmuoqqltow", // Make sure this is the correct app-specific password
+      pass: "cafyvsohsqyatvjl", // Make sure this is the correct app-specific password
     },
   });
 

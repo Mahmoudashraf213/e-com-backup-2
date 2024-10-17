@@ -21,3 +21,13 @@ export const loginVal = joi.object({
   email: generalFields.email,
   password: generalFields.password.required(),
 })
+
+export const forgotPasswordVal = joi.object({
+  email: generalFields.email.required(),
+});
+
+export const resetPasswordVal = joi.object({
+  email: generalFields.email.required(),
+  otp: joi.string().length(6).required(),
+  newPassword: generalFields.password.required(),
+});

@@ -1,4 +1,3 @@
-
 const generateMessage = (entity) => ({
   alreadyExist: `${entity} already exist`,
   notFound: `${entity} not found`,
@@ -8,27 +7,30 @@ const generateMessage = (entity) => ({
   updateSuccessfully: `update ${entity} Successfully`,
   deleteSuccessfully: `delete ${entity} Successfully`,
   getAllSuccessfully: `get all ${entity} Successfully`,
-  getSuccessfully:`get ${entity} Successfully`,
-  notExist:`not exist ${entity}`,
-  canceledSuccessfully:` canceled ${entity} Successfully`,
+  getSuccessfully: `get ${entity} Successfully`,
+  notExist: `not exist ${entity}`,
+  canceledSuccessfully: ` canceled ${entity} Successfully`,
 });
 export const messages = {
   category: generateMessage("category"),
   subcategory: generateMessage("subcategory"),
   brand: generateMessage("brand"),
-  product:generateMessage("product"),
-  user:generateMessage("user"),
-  review:generateMessage("review"),
-  coupon:generateMessage("coupon"),
-  cart:generateMessage("cart"),
+  product: generateMessage("product"),
+  user: generateMessage("user"),
+  review: generateMessage("review"),
+  coupon: generateMessage("coupon"),
+  cart: generateMessage("cart"),
   wishList: generateMessage("wishList"),
-  order:generateMessage("order"),
-  file:{required:'file is required '},
+  order: generateMessage("order"),
+  file: { required: "file is required " },
   user: {
-    ...generateMessage('user'),
+    ...generateMessage("user"),
     verified: "user verified successfully",
     invalidCredntiols: "invalid Credntiols",
     notVerified: "not Verified",
     loginSuccessfully: "login successfully",
-  }
+    otpSent: "OTP sent to email.",
+    invalidOTP: "Invalid or expired OTP.",
+    passwordResetSuccess: "Password reset successfully.",
+  },
 };
